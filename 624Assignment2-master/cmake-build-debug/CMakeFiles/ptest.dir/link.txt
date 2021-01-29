@@ -1,0 +1,1 @@
+/usr/bin/c++  -g  -rdynamic CMakeFiles/ptest.dir/txn/txn_processor.cc.o CMakeFiles/ptest.dir/txn/txn_processor_test.cc.o CMakeFiles/ptest.dir/txn/lock_manager.cc.o CMakeFiles/ptest.dir/txn/storage.cc.o CMakeFiles/ptest.dir/txn/mvcc_storage.cc.o CMakeFiles/ptest.dir/txn/txn.cc.o  -o ptest -lpthread 

@@ -1,0 +1,85 @@
+[xiaomwu@heave2 624Assignment2-master]$ make test
++ cxx txn/storage.cc
++ cxx txn/mvcc_storage.cc
++ cxx txn/txn.cc
++ cxx txn/lock_manager.cc
++ cxx txn/txn_processor.cc
++ cxx txn/lock_manager_test.cc
++ ld bin/txn/lock_manager_test
++ cxx txn/txn_processor_test.cc
++ ld bin/txn/txn_processor_test
+== bin/txn/lock_manager_test ==
+[ LockManagerA_SimpleLocking ] BEGIN
+[ LockManagerA_SimpleLocking ] PASS
+[ LockManagerA_LocksReleasedOutOfOrder ] BEGIN
+[ LockManagerA_LocksReleasedOutOfOrder ] PASS
+[ LockManagerB_SimpleLocking ] BEGIN
+[ LockManagerB_SimpleLocking ] PASS
+[ LockManagerB_LocksReleasedOutOfOrder ] BEGIN
+[ LockManagerB_LocksReleasedOutOfOrder ] PASS
+== bin/txn/txn_processor_test ==
+			    Average Transaction Duration
+		0.1ms		1ms		10ms
+'Low contention' Read only (5 records)
+ Serial   	8870.15		985.912		99.8005	
+ Locking A	43863.4		5608.74		585.87	
+ Locking B	43618.6		5594.02		647.952	
+ OCC      	42420.9		5536.59		556.707	
+ OCC-P    	40684		5449.47		605.019	
+ MVCC     	41753.6		5488		611.065	
+'Low contention' Read only (30 records) 
+ Serial   	5741.66		932.979		98.6187	
+ Locking A	9886.31		4951.86		562.522	
+ Locking B	9986.14		4811.99		591.978	
+ OCC      	26181.5		5232.78		610.924	
+ OCC-P    	24604.1		5106.39		582.038	
+ MVCC     	24981.6		5171.78		608.038	
+'High contention' Read only (5 records)
+ Serial   	8606.37		983.687		99.6488	
+ Locking A	22421.4		4153.4		472.187	
+ Locking B	41240		5553.17		600.614	
+ OCC      	41814.8		5486.52		624.653	
+ OCC-P    	40311.9		5625.34		609.99	
+ MVCC     	39313.5		5505.31		566.815	
+'High contention' Read only (30 records)
+ Serial   	5904.42		933.641		99.2843	
+ Locking A	2820.57		795.626		97.2604	
+ Locking B	16748.8		4955.99		620.425	
+ OCC      	24713.4		5308.35		625.549	
+ OCC-P    	24146.6		5121.93		657.186	
+ MVCC     	27740.9		5132.53		563.266	
+Low contention read-write (5 records)
+ Serial   	8154.97		971.917		99.4909	
+ Locking A	36415.5		5230.3		583.1	
+ Locking B	36208.4		5499.83		634.638	
+ OCC      	38414.2		5299.74		547.181	
+ OCC-P    	36855		5278.2		614.457	
+ MVCC     	34734.8		5409.37		584.679	
+Low contention read-write (10 records)
+ Serial   	6836.08		954.155		99.5524	
+ Locking A	19254.5		5407.1		574.262	
+ Locking B	20112.1		5295.51		554.448	
+ OCC      	33248.7		5528.77		522.623	
+ OCC-P    	30612.7		5282.41		583.689	
+ MVCC     	29261.7		5304.44		589.225	
+High contention read-write (5 records)
+ Serial   	8400.32		978.475		99.766	
+ Locking A	20687.8		4163.71		510.241	
+ Locking B	21640.3		4161.81		497.467	
+ OCC      	19683.4		2145.45		262.903	
+ OCC-P    	20670.5		2799.85		291.32	
+ MVCC     	10283.4		1310.76		149.072	
+High contention read-write (10 records)
+ Serial   	7161.54		962.374		99.5174	
+ Locking A	8245.84		2449.9		287.49	
+ Locking B	9029.81		2415.54		297.189	
+ OCC      	9189.7		1212.23		144.929	
+ OCC-P    	9758.67		1483.29		162.899	
+ MVCC     	4668.14		745.072		67.0897	
+High contention mixed read only/read-write 
+ Serial   	7210.6		1185.88		129.271	
+ Locking A	3323.23		1000.11		113.999	
+ Locking B	11357		4186.24		709.567	
+ OCC      	16495.9		2481.76		315.566	
+ OCC-P    	18005.7		3330.14		369.102	
+ MVCC     	18881.3		5630.51		785.111

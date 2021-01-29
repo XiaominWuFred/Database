@@ -1,0 +1,1 @@
+/usr/bin/c++  -g  -rdynamic CMakeFiles/ltest.dir/txn/lock_manager.cc.o CMakeFiles/ltest.dir/txn/lock_manager_test.cc.o  -o ltest -lpthread 

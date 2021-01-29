@@ -1,0 +1,51 @@
+Author Xiaomin Wu
+files changed:
+txn/lock_manager.cc:
+modified functions:
+	bool LockManagerA::WriteLock(Txn* txn, const Key& key)
+	void LockManagerA::Release(Txn* txn, const Key& key)
+	LockMode LockManagerA::Status(const Key& key, vector<Txn*>* owners)
+	bool LockManagerB::WriteLock(Txn* txn, const Key& key)
+	bool LockManagerB::ReadLock(Txn* txn, const Key& key)
+	void LockManagerB::Release(Txn* txn, const Key& key)
+	LockMode LockManagerB::Status(const Key& key, vector<Txn*>* owners)
+added functions:
+	void LockManagerB::grant(Txn* txn)
+	void LockManagerB::reduceWaitList(Txn* txn)
+	vector<LockManagerB::LockRequest>* LockManagerB::findvec(deque<LockManager::LockRequest>* reqQue,deque<LockManager::LockRequest>::iterator itr)
+
+txn/lock_manager.h:
+added some function declarations corresponding to new function in lock_manager.cc:
+
+txn/lock_manager_test.cc:
+modified the testing case to more complicated version. The original version of test can also pass. 
+
+txn/mvcc_storage.cc:
+modified functions:
+	bool MVCCStorage::Read(Key key, Value* result, int txn_unique_id)
+	bool MVCCStorage::CheckWrite(Key key, int txn_unique_id)
+	void MVCCStorage::Write(Key key, Value value, int txn_unique_id)
+
+txn/txn.cc:
+added functions:
+	void Txn::CheckWriteSet(set<Key> otherWriteset, bool* result)
+	void Txn::CheckReadSet(set<Key> otherWriteset, bool* result)
+
+txn/txn.h:
+added declaration to added functions in txn.cc
+
+txn/txn_processor.cc:
+modified functions:
+	void TxnProcessor::RunOCCScheduler()
+	void TxnProcessor::RunOCCParallelScheduler()
+	void TxnProcessor::RunMVCCScheduler()
+
+added functions:
+	void TxnProcessor::CleanupTxn(Txn* txn)
+	void TxnProcessor::RestartTxn(Txn* txn)
+	void TxnProcessor::ExecuteTxnParallel(Txn *txn)
+	void TxnProcessor::MVCCExecuteTxn(Txn* txn)
+
+txn/txn_processor.h:
+added declaration to added functions in txn.cc
+
